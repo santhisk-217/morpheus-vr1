@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morpheus VR</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; }
+        #ui { position: absolute; top: 20px; left: 20px; z-index: 999; background: rgba(0,0,0,0.8); padding: 20px; border: 1px solid #0f0; }
+        input { padding: 10px; width: 200px; }
+        button { padding: 10px; background: #0f0; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <h1>Morpheus VR</h1>
+        <form method="POST">
+            <input type="text" name="prompt" placeholder="Blue car..." value="{{ prompt }}" required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    <a-scene>
+        {% if generated_scene %}
+            {{ generated_scene | safe }}
+        {% else %}
+            <a-sky color="#000"></a-sky>
+        {% endif %}
+        <a-entity position="0 1.6 0"><a-camera></a-camera></a-entity>
+    </a-scene>
+</body>
+</html>
